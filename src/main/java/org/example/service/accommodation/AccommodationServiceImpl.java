@@ -85,7 +85,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 
         Accommodation accommodation = accommodationRepository
                 .findById(id).orElseThrow(() ->
-                        new EntityNotFoundException("Cant find accommodation by id "));
+                        new EntityNotFoundException("Cant find accommodation by id"));
 
         accommodationMapper.updateFromDto(accommodationRequestDto, accommodation);
 

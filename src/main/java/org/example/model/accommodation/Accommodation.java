@@ -27,8 +27,8 @@ public class Accommodation {
     @JoinColumn(name = "type_id", nullable = false)
     private AccommodationType type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
     @NotBlank
