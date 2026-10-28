@@ -1,5 +1,6 @@
 package org.example.service.user;
 
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.user.UserRegistrationRequestDto;
 import org.example.dto.user.UserResponseDto;
@@ -17,12 +18,13 @@ import org.example.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Set;
 
 @Transactional
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
+    private static final String CANT_FIND_USER_BY_EMAIL = "Can't find user by email: ";
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -32,7 +34,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto registerUser(UserRegistrationRequestDto userRegistrationRequestDto)
             throws RegistrationException {
-
         if (userRepository.existsByEmail(userRegistrationRequestDto.getEmail())) {
             throw new RegistrationException("User with email "
                     + userRegistrationRequestDto.getEmail()
@@ -43,45 +44,38 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role userRole = roleRepository.findByRoleName(Role.RoleName.ROLE_USER)
-                .orElseThrow(() -> new EntityNotFoundException("Role not found"));
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Role not found: " + Role.RoleName.ROLE_USER));
         user.setRoles(Set.of(userRole));
 
         userRepository.save(user);
-
         return userMapper.toDto(user);
     }
 
     @Override
     public UserResponseDto getInfo(String email) {
-
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Can't find user by email: " + email));
-
+                        CANT_FIND_USER_BY_EMAIL + email));
         return userMapper.toDto(user);
     }
 
     @Override
     public UserResponseDto update(String email,
                                   UserUpdateRequestDto userUpdateRequestDto) {
-
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Can't find user by email: " + email));
+                        CANT_FIND_USER_BY_EMAIL + email));
         userMapper.setUpdateInfoToUser(user, userUpdateRequestDto);
-
-
-
         return userMapper.toDto(userRepository.save(user));
     }
 
     @Override
     public void updatePassword(String email,
                                UserUpdatePasswordRequestDto userUpdatePasswordRequestDto) {
-
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Can't find user by email: " + email));
+                        CANT_FIND_USER_BY_EMAIL + email));
 
         if (!passwordEncoder.matches(userUpdatePasswordRequestDto.getOldPassword(),
                 user.getPassword())) {
@@ -102,13 +96,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto updateRoles(Long id,
                                        UserUpdateRoleRequestDto userUpdateRoleRequestDto) {
-
         User user = userRepository.findUserById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Can't find user by id: " + id));
 
         Role newRole = roleRepository.findByRoleName(Role.RoleName.ROLE_ADMIN)
-                .orElseThrow(() -> new EntityNotFoundException("Role not found"));
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Role not found: " + Role.RoleName.ROLE_ADMIN));
         user.getRoles().clear();
         user.setRoles(Set.of(newRole));
 

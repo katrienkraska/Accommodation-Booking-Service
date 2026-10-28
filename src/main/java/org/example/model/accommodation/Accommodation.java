@@ -1,12 +1,20 @@
 package org.example.model.accommodation;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Set;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
@@ -31,7 +39,6 @@ public class Accommodation {
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
-    @NotBlank
     @Column(name = "size_type", nullable = false)
     private String sizeType;
 
@@ -43,13 +50,9 @@ public class Accommodation {
     )
     private Set<AmenityType> amenities;
 
-    @NotNull
-    @Positive
     @Column(name = "daily_rate", nullable = false)
     private BigDecimal dailyRate;
 
-    @NotNull
-    @PositiveOrZero
     @Column(nullable = false)
     private Integer availability;
 

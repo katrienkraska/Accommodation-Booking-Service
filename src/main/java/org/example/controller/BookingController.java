@@ -1,6 +1,9 @@
 package org.example.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.booking.BookingDto;
 import org.example.dto.booking.CreateBookingRequest;
@@ -15,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
+@Tag(name = "Bookings",
+        description = "Endpoints for creating, viewing and canceling accommodation bookings")
 @RestController
 @RequestMapping("/bookings")
 @RequiredArgsConstructor
@@ -26,24 +30,34 @@ public class BookingController {
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping
+    @Operation(summary = "Create a booking",
+            description = "Creates a new booking with status PENDING for the authenticated user, "
+                    + "if the accommodation is available for the requested dates.")
     public BookingDto createBooking(@RequestBody @Valid CreateBookingRequest bookingRequest) {
         return bookingService.createBooking(bookingRequest);
     }
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/my")
+    @Operation(summary = "Get my bookings",
+            description = "Returns all bookings of the currently authenticated user.")
     public List<BookingDto> getMyBookings() {
         return bookingService.getMyBookings();
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/all")
+    @Operation(summary = "Get all bookings",
+            description = "Returns all bookings of all users. Accessible only to administrators.")
     public List<BookingDto> getAllBookings() {
         return bookingService.getAllBookings();
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping
+    @Operation(summary = "Filter bookings",
+            description = "Returns bookings filtered by optional user ID and booking status. "
+                    + "Accessible only to administrators.")
     public List<BookingDto> getAll(
             @RequestParam(required = false) Long userId,
             @RequestParam(required = false) BookingStatusName status) {
@@ -51,12 +65,18 @@ public class BookingController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get booking by ID",
+            description = "Returns the booking with the specified ID. "
+                    + "Available to the booking owner and to administrators.")
     public BookingDto getBookingById(@PathVariable Long id) {
         return bookingService.getBookingById(id);
     }
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @DeleteMapping("/{id}")
+    @Operation(summary = "Cancel a booking",
+            description = "Sets the status of the booking with the specified ID to CANCELED. "
+                    + "Available to the booking owner and to administrators.")
     public void cancelBooking(@PathVariable Long id) {
         bookingService.cancelBooking(id);
     }
