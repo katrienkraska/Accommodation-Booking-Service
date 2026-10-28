@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8
+      author: Kate Kraska
+      changes:
+        - createTable:
+            tableName: accommodations_amenity_types
+            columns:
+              - column:
+                  name: accommodation_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amenity_type_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: accommodations_amenity_types
+            columnNames: accommodation_id, amenity_type_id
+
+        - addForeignKeyConstraint:
+            baseTableName: accommodations_amenity_types
+            baseColumnNames: accommodation_id
+            referencedTableName: accommodations
+            referencedColumnNames: id
+            constraintName: fk_acc_amenities_accommodation
+
+        - addForeignKeyConstraint:
+            baseTableName: accommodations_amenity_types
+            baseColumnNames: amenity_type_id
+            referencedTableName: amenity_types
+            referencedColumnNames: id
+            constraintName: fk_acc_amenities_amenity

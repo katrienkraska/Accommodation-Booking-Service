@@ -1,0 +1,203 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-amenity-types
+      author: Kate Kraska
+      changes:
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SWIMMING_POOL
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: GYM
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: PET_FRIENDLY
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: FREE_WIFI
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: HIGH_SPEED_INTERNET
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: PARKING
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: AIR_CONDITIONING
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: CABLE_TV
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: ELEVATOR
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SPA
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: HOT_TUB
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SAUNA
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: FIREPLACE
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: DISHWASHER
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: WASHER
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: DRYER
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: OUTDOOR_GRILL
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: TERRACE
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SMART_HOME
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: WHEELCHAIR_ACCESSIBLE
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SECURITY
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: CCTV
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SAFE
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: GARDEN
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SOUNDPROOFING
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SHARED_WORKSPACE
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: ROOM_SERVICE
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: SMOKING_AREA
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: FAMILY_FRIENDLY
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: NON_SMOKING
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: PRIVATE_ENTRANCE
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: CAR_RENTAL
+        - insert:
+            tableName: amenity_types
+            columns:
+              - column:
+                  name: name
+                  value: BIKE_RENTAL

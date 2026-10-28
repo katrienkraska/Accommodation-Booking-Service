@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-admin-user
+      author: Kate Kraska
+      changes:
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: email
+                  value: admin@example.com
+              - column:
+                  name: password
+                  value: $2a$12$Rerg8ttfEspyFAfrj1Bem.oLx3gw4nfqAC7e6uoghCM9tkm8P56GO
+              - column:
+                  name: first_name
+                  value: Admin
+              - column:
+                  name: last_name
+                  value: User
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+              - column:
+                  name: role_id
+                  valueNumeric: 2

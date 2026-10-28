@@ -1,0 +1,95 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-accommodation-types
+      author: Kate Kraska
+      changes:
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: HOUSE
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: APARTMENT
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: VACATION_HOME
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: BUNGALOW
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: VILLA
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: COTTAGE
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: LOFT
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: STUDIO
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: TOWNHOUSE
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: DORM
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: GUEST_HOUSE
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: TREE_HOUSE
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: YURT
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: HOSTEL
+        - insert:
+            tableName: accommodation_types
+            columns:
+              - column:
+                  name: name
+                  value: HOTEL

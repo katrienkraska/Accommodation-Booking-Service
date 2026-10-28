@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-roles
+      author: Kate Kraska
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: '1'
+              - column:
+                  name: role
+                  value: ROLE_USER
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: '2'
+              - column:
+                  name: role
+                  value: ROLE_ADMIN

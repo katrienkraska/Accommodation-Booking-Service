@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-payment-statuses
+      author: Kate Kraska
+      changes:
+        - insert:
+            tableName: payment_statuses
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: '1'
+              - column:
+                  name: name
+                  value: PENDING
+        - insert:
+            tableName: payment_statuses
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: '2'
+              - column:
+                  name: name
+                  value: PAID
+        - insert:
+            tableName: payment_statuses
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: '3'
+              - column:
+                  name: name
+                  value: CANCELED

@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: 9
+      author: Kate Kraska
+      changes:
+        - createTable:
+            tableName: bookings
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+
+              - column:
+                  name: accommodation_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: check_in_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: check_out_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: is_deleted
+                  type: BIT(1)
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: bookings
+            baseColumnNames: accommodation_id
+            referencedTableName: accommodations
+            referencedColumnNames: id
+            constraintName: fk_booking_accommodation
+
+        - addForeignKeyConstraint:
+            baseTableName: bookings
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_booking_user
+
+        - createIndex:
+            tableName: bookings
+            indexName: idx_bookings_user_id
+            columns:
+              - column:
+                  name: user_id
+
+        - createIndex:
+            tableName: bookings
+            indexName: idx_bookings_accommodation_id
+            columns:
+              - column:
+                  name: accommodation_id
